@@ -29,7 +29,7 @@ local buffer2,sz2 = qseri.compress_pack(msg)
 local deMsg = qseri.unpack(buffer2, sz2)
 ```
 
-# Test 100w times(Intel(R) Core(TM) i5-13400F):
+# Test 100 million times(Intel(R) Core(TM) i5-13400F):
 
 | Protocol   | Encoded Size | Encode Time | Decode Time | Total Time |
 |------------|-------------:|------------:|------------:|-----------:|
