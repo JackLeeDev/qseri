@@ -33,8 +33,8 @@ local deMsg = qseri.unpack(buffer2, sz2)
 
 | Protocol   | Encoded Size | Encode Time | Decode Time | Total Time |
 |------------|-------------:|------------:|------------:|-----------:|
-| **lua-serialize** | 543 bytes     | 3960 ms      | 6070 ms     | 10030 ms    |
-| **qseri(raw_pack)** | 491 bytes     | 4642 ms      | **3511 ms**      | **8153 ms** |
-| **qseri(compress_pack)** | **275 bytes**     | 5933 ms      | **3335 ms**      | 9268 ms |
+| **lua-serialize** | 543 bytes     | 3777 ms      | 6070 ms     | 10030 ms    |
+| **qseri(raw_pack)** | 491 bytes     | 3733 ms      | **3551 ms**      | **7284 ms** |
+| **qseri(compress_pack)** | **275 bytes**     | 5037 ms      | **3437 ms**      | 8474 ms |
 
 lua-serialize : https://github.com/cloudwu/lua-serialize

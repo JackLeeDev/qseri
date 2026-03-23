@@ -4,6 +4,8 @@
 #include <stdint.h>
 #include <string.h>
 #include <lauxlib.h>
+#include <lobject.h>
+#include <ltable.h>
 #include "qdef.h"
 #include "qbuf.h"
 #include "qbarray.h"
@@ -121,26 +123,19 @@ static bool table_info(lua_State* L, int32_t stack, bool* is_array, int32_t* siz
 		}
 	}
 	else {
-		int32_t arr_size = lua_rawlen(L, stack);
-		if (arr_size > 0) {
-			*is_array = true;
-			*size += arr_size;
-			max_key = arr_size;
-			lua_pushinteger(L, arr_size);
-			while (lua_next(L, stack)) {
-				*size += 1;
-				*is_array = false;
-				lua_pop(L, 1);
-			}
-		}
-		else {
-			*is_array = false;
-			lua_pushnil(L);
-			while (lua_next(L, stack)) {
-				*size += 1;
-				lua_pop(L, 1);
-			}
-		}
+	  Table *t = (Table*)lua_topointer(L, stack);
+	  int32_t arr_size = lua_rawlen(L, stack);
+	  int32_t hsize = sizenode(t);
+	  int32_t hused = 0;
+	  int32_t i;
+	  for (i = 0; i < hsize; i++) {
+	      if (!ttisnil(gval(gnode(t, i)))) {
+	          ++hused;
+	      }
+	  }
+	  *size += arr_size + hused;
+	  max_key = arr_size;
+	  *is_array = (arr_size > 0) && (hused == 0);
 	}
 	return true;
 }
