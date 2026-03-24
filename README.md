@@ -4,6 +4,7 @@
 ✨ **Core Features**  
 - 🪶 **Ultra-compact encoding(49% smaller)** 
 - 🚀 **Blazing-fast decoding(40% faster)**
+- **QQ Group**: 1075858599
 
 # Data:
 ```lua 
